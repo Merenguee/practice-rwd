@@ -86,3 +86,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => {
+    preloader.classList.add('fade-out');
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 1000); // Espera que se termine el fade-out
+  }, 2000); // Tiempo que se muestra el logo (2 segundos)
+});
+
