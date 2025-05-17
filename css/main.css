@@ -6,7 +6,10 @@ html {
     font-size: 16px;
 }
 
+
+
 body {
+    background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 22%, rgba(0, 0, 0, 1) 100%);
     margin: 0;
     font-family: Arial;
 }
@@ -19,6 +22,32 @@ body {
     padding: 1.5rem;
     background: #f1f1f1;
     text-align: center;
+}
+
+.info {
+    opacity: 0;
+    transition: 0.3s;
+    position: absolute;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .imagen:hover .info {
+    opacity: 1;
+  }
+
+  .imagen {
+    position: relative;
+    width: 300px;
+    margin: 2rem auto;
+}
+
+.imagen img {
+    width: 100%;
+    display: block;
 }
 
 .row {
