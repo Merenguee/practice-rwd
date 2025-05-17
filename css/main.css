@@ -1,45 +1,20 @@
-/* Reset básico */
+/* ================== RESET ================== */
 * {
     box-sizing: border-box;
-}
-
-html {
+  }
+  
+  html {
     font-size: 16px;
-}
-
-body {
+  }
+  
+  body {
     margin: 0;
     font-family: 'Josefin Sans', sans-serif;
     color: white;
-    /* OJO: NO poner position: relative acá para que los fixed funcionen bien */
-}
-
-/* Transiciones suaves para mostrar/ocultar imágenes */
-#photo-grid {
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-#photo-grid.hidden {
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-}
-
-/* Animacion zoom suave para main-wrapper */
-#main-wrapper {
-    transform: scale(0.9);
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    will-change: transform, opacity;
-}
-
-#main-wrapper.zoomed {
-    transform: scale(1);
-    opacity: 1;
-}
-
-/* Video de fondo */
-.video-background {
+  }
+  
+  /* ================== VIDEO DE FONDO ================== */
+  .video-background {
     position: fixed;
     top: 0;
     left: 0;
@@ -47,128 +22,194 @@ body {
     height: 100vh;
     overflow: hidden;
     z-index: -1;
-}
-
-.video-background video {
+  }
+  
+  .video-background video {
     position: absolute;
     top: 50%;
     left: 50%;
     min-width: 100%;
     min-height: 100%;
-    width: auto;
-    height: auto;
     transform: translate(-50%, -50%) scale(1.2);
     filter: brightness(0.5);
     object-fit: cover;
-}
-
-/* Capa de sombra arriba del video */
-.video-background .overlay {
+    width: auto;
+    height: auto;
+  }
+  
+  .video-background .overlay {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0, 0, 0, 0.3);
     pointer-events: none;
-}
-
-/* Header */
-.header {
+  }
+  
+  /* ================== ANIMACIONES ================== */
+  #main-wrapper {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    will-change: transform, opacity;
+  }
+  
+  #main-wrapper.zoomed {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  #photo-grid {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  #photo-grid.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+  }
+  
+  .hidden-images {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  /* ================== HEADER ================== */
+  .header {
     position: relative;
     padding: 1.5rem;
     background: transparent;
     text-align: center;
     z-index: 10;
     transition: background 0.4s ease;
-}
-
-/* Header cuando hacés scroll */
-.header.scrolled {
+  }
+  
+  .header.scrolled {
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
-}
-
-/* Grid de imágenes */
-.row {
+  }
+  
+  /* ================== GRID DE IMÁGENES ================== */
+  .row {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
     margin-top: 1rem;
-    z-index: 10;
     position: relative;
-}
-
-.column {
+    z-index: 10;
+  }
+  
+  .column {
     flex: 25%;
     max-width: 25%;
     padding: 0 0.25rem;
-}
-
-.column img {
+  }
+  
+  .column img {
     margin-top: 0.5rem;
     width: 100%;
     vertical-align: middle;
     transition: all 0.3s ease;
-    cursor: pointer;
     border-radius: 6px;
-}
-
-.column img:hover {
+    cursor: pointer;
+  }
+  
+  .column img:hover {
     transform: scale(1.15);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
     z-index: 10;
-}
-
-.row:hover .column img:not(:hover) {
+     cursor: pointer;
+  }
+  
+  .row:hover .column img:not(:hover) {
     opacity: 0.7;
     transform: scale(0.95);
-}
-
-/* Botones flotantes */
-.btn-floating {
-    position: fixed;       /* Los hace fijos en pantalla */
-    bottom: 20px;          /* A 20px del borde inferior */
-    right: 20px;           /* A 20px del borde derecho */
+  }
+  
+  /* ================== BOTONES FLOTANTES ================== */
+  .btn-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     font-size: 24px;
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     transition: background-color 0.3s ease;
-    z-index: 1000;         /* Para que quede arriba de todo */
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.btn-floating:hover {
-    background-color: rgba(255,255,255,0.3);
-}
-
-.btn-second {
-    right: 70px; /* Se corre un poco para que no quede encima del primero */
-}
-
-.hidden-images {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.9);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-/* Responsive */
-@media screen and (max-width: 800px) {
+  }
+  
+  .btn-floating:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .btn-second {
+    right: 70px;
+  }
+  
+  /* ================== MODAL AMPLIAR IMAGEN ================== */
+  .img-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+  }
+  
+  .img-modal.show {
+    display: flex;
+    opacity: 1;
+  }
+  
+  .img-modal .modal-content {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #000;
+    transition: transform 0.3s ease;
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+  
+  .modal-close:hover {
+    color: #f33;
+  }
+  
+  /* ================== RESPONSIVE ================== */
+  @media screen and (max-width: 800px) {
     .column {
-        flex: 50%;
-        max-width: 50%;
+      flex: 50%;
+      max-width: 50%;
     }
-}
-
-@media screen and (max-width: 600px) {
+  }
+  
+  @media screen and (max-width: 600px) {
     .column {
-        flex: 100%;
-        max-width: 100%;
+      flex: 100%;
+      max-width: 100%;
     }
-}
+  }
+  
