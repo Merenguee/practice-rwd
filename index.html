@@ -3,63 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Video Fondo con Zoom</title>
+  <title>Video Fondo con Controles</title>
   <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-  <div class="video-background">
-    <video autoplay loop playsinline>
-      <source src="assets/Musica/damaris.mp4" type="video/mp4" />
+  <div class="video-background" id="video-background">
+    <video autoplay loop playsinline muted id="bg-video">
+      <source src="assets/Musica/DAMARIS.mp4" type="video/mp4" />
       Tu navegador no soporta la etiqueta video.
     </video>
     <div class="overlay"></div>
   </div>
 
-  <!-- Contenedor principal para zoom -->
   <div id="main-wrapper">
     <header class="header">
-      <h1>Responsive Image Grid</h1>
-      <p>Modificar el tamaño de la ventana para ver los cambios.</p>
+      <h1>Galeria</h1>
+      <p>.</p>
     </header>
 
-    <div class="row">
+    <div class="row" id="photo-grid">
       <div class="column">
-        <img src="assets/images/wedding.jpg" alt="" />
-        <img src="assets/images/rocks.jpg" alt="" />
-        <img src="assets/images/falls2.jpg" alt="" />
-        <img src="assets/images/paris.jpg" alt="" />
-        <img src="assets/images/nature.jpg" alt="" />
-        <img src="assets/images/mist.jpg" alt="" />
-        <img src="assets/images/paris.jpg" alt="" />
+        <img src="assets/images/1.png" alt="Imagen 1" />
+        <img src="assets/images/2.png" alt="Imagen 2" />
+        <img src="assets/images/3.png" alt="Imagen 3" />
+        <img src="assets/images/16.png" alt="Imagen 11" />
+        <img src="assets/images/17.jpeg" alt="Imagen 11" />
       </div>
       <div class="column">
-        <img src="assets/images/underwater.jpg" alt="" />
-        <img src="assets/images/ocean.jpg" alt="" />
-        <img src="assets/images/wedding.jpg" alt="" />
-        <img src="assets/images/mountainskies.jpg" alt="" />
-        <img src="assets/images/rocks.jpg" alt="" />
-        <img src="assets/images/underwater.jpg" alt="" />
+        <img src="assets/images/4.png" alt="Imagen 4" />
+        <img src="assets/images/5.jpg" alt="Imagen 5" />
+        <img src="assets/images/6.png" alt="Imagen 6" />
       </div>
       <div class="column">
-        <img src="assets/images/wedding.jpg" alt="" />
-        <img src="assets/images/rocks.jpg" alt="" />
-        <img src="assets/images/falls2.jpg" alt="" />
-        <img src="assets/images/paris.jpg" alt="" />
-        <img src="assets/images/nature.jpg" alt="" />
-        <img src="assets/images/mist.jpg" alt="" />
-        <img src="assets/images/paris.jpg" alt="" />
+        <img src="assets/images/7.png" alt="Imagen 7" />
+        <img src="assets/images/8.png" alt="Imagen 8" />
+        <img src="assets/images/9.png" alt="Imagen 9" />
+        <img src="assets/images/15.png" alt="Imagen 11" />
       </div>
       <div class="column">
-        <img src="assets/images/underwater.jpg" alt="" />
-        <img src="assets/images/ocean.jpg" alt="" />
-        <img src="assets/images/wedding.jpg" alt="" />
-        <img src="assets/images/mountainskies.jpg" alt="" />
-        <img src="assets/images/rocks.jpg" alt="" />
-        <img src="assets/images/underwater.jpg" alt="" />
+        <img src="assets/images/10.png" alt="Imagen 10" />
+        <img src="assets/images/11.png" alt="Imagen 11" />
+        <img src="assets/images/14.png" alt="Imagen 11" />
+        <img src="assets/images/13.png" alt="Imagen 11" />
+        <img src="assets/images/12.png" alt="Imagen 11" />
       </div>
     </div>
   </div>
+
+  <!-- Botones -->
+  <button id="btn-toggle-images" class="btn-floating">🖼️</button>
+  <button id="btn-sound" class="btn-floating btn-second">🔇</button>
 
   <script src="js/main.js"></script>
 </body>
