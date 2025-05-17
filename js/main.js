@@ -97,3 +97,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 2000); // Tiempo que se muestra el logo (2 segundos)
 });
 
+  window.addEventListener("scroll", () => {
+    const header = document.getElementById("main-header");
+    header.classList.toggle("scroll-header", window.scrollY > 50);
+  });
+
+

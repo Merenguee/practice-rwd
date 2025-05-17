@@ -15,7 +15,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Intro animación */
     #intro {
       position: fixed;
       top: 0; left: 0;
@@ -45,7 +44,6 @@
       100% { opacity: 0; display: none; }
     }
 
-    /* Barra lateral */
     .sidebar {
       position: fixed;
       top: 50%;
@@ -73,7 +71,6 @@
       border-left: 2px solid white;
     }
 
-    /* Secciones de personajes */
     .personaje-section {
       display: flex;
       align-items: center;
@@ -94,8 +91,8 @@
     }
 
     .personaje-img img {
-        width: 100%;
-        border-radius: 15px;
+      width: 100%;
+      border-radius: 15px;
     }
 
     .bio {
@@ -123,11 +120,64 @@
         text-align: center;
         padding: 2rem 1rem;
       }
+
       .sidebar {
         display: none;
       }
+
+      .mobile-nav {
+        display: block;
+      }
     }
-    
+
+    /* ===== MENÚ MÓVIL ANIMADO ===== */
+    .mobile-nav {
+      display: none;
+      position: sticky;
+      top: 0;
+      background: #111;
+      padding: 10px 15px;
+      overflow-x: auto;
+      white-space: nowrap;
+      z-index: 999;
+      border-bottom: 1px solid #333;
+    }
+
+    @media screen and (max-width: 768px) {
+      .mobile-nav {
+        display: block;
+        position: relative;
+      }
+    }
+
+    .mobile-link {
+      color: #ccc;
+      text-decoration: none;
+      margin-right: 1.2rem;
+      font-size: 1rem;
+      padding: 6px 10px;
+      border-radius: 5px;
+      transition: 0.3s;
+      display: inline-block;
+      position: relative;
+    }
+
+    .mobile-link.active {
+      color: white;
+      font-weight: bold;
+    }
+
+    .selector-bar {
+      position: absolute;
+      bottom: 0;
+      height: 3px;
+      background: white;
+      box-shadow: 0 0 8px white;
+      border-radius: 2px;
+      transition: left 0.3s, width 0.3s;
+      width: 0;
+      left: 0;
+    }
   </style>
 </head>
 <body>
@@ -137,11 +187,19 @@
     <img src="assets/images/logo.png" alt="Logo" />
   </div>
 
-  <!-- Barra lateral -->
+  <!-- Barra lateral PC -->
   <div class="sidebar" id="sidebar">
     <a href="#lukas" class="sidebar-link">Lukas</a>
     <a href="#juanci" class="sidebar-link">Juanci</a>
     <a href="#agustin" class="sidebar-link">Agustín</a>
+  </div>
+
+  <!-- Navegación móvil -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#lukas" class="mobile-link active">Lukas</a>
+    <a href="#juanci" class="mobile-link">Juanci</a>
+    <a href="#agustin" class="mobile-link">Agustín</a>
+    <div class="selector-bar" id="selectorBar"></div>
   </div>
 
   <!-- Secciones -->
@@ -151,9 +209,7 @@
     </div>
     <div class="bio">
       <h2>Lukas Rantantina</h2>
-      <p>
-        a
-      </p>
+      <p>a</p>
     </div>
   </section>
 
@@ -163,9 +219,7 @@
     </div>
     <div class="bio">
       <h2>Juanci Laferere</h2>
-      <p>
-         a
-      </p>
+      <p>a</p>
     </div>
   </section>
 
@@ -175,67 +229,87 @@
     </div>
     <div class="bio">
       <h2>Agustin Romeo</h2>
-      <p>
-        a
-      </p>
+      <p>a</p>
     </div>
   </section>
 
+  <!-- SCRIPT -->
   <script>
     const sections = document.querySelectorAll('.personaje-section');
     const links = document.querySelectorAll('.sidebar-link');
-  
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const selectorBar = document.getElementById('selectorBar');
+
     function updateSidebar() {
       let index = sections.length;
       while (--index && window.scrollY + 200 < sections[index].offsetTop) {}
       links.forEach(link => link.classList.remove('active'));
       links[index].classList.add('active');
+
+      mobileLinks.forEach(link => link.classList.remove('active'));
+      mobileLinks[index].classList.add('active');
+      moveSelectorBar(mobileLinks[index]);
     }
-  
-    updateSidebar();
+
+    function moveSelectorBar(el) {
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const parentRect = el.parentElement.getBoundingClientRect();
+      selectorBar.style.width = rect.width + 'px';
+      selectorBar.style.left = (rect.left - parentRect.left) + 'px';
+    }
+
     window.addEventListener('scroll', updateSidebar);
-  
-    // Scroll animado personalizado
+
+    window.addEventListener('load', () => {
+      const active = document.querySelector('.mobile-link.active');
+      if (active) {
+        setTimeout(() => moveSelectorBar(active), 100);
+      }
+    });
+
     function smoothScrollTo(targetY, duration = 800) {
       const startY = window.scrollY;
       const diff = targetY - startY;
       let start;
-  
+
       function step(timestamp) {
         if (!start) start = timestamp;
         const time = timestamp - start;
         const percent = Math.min(time / duration, 1);
         window.scrollTo(0, startY + diff * easeInOutQuad(percent));
-        if (time < duration) {
-          requestAnimationFrame(step);
-        }
+        if (time < duration) requestAnimationFrame(step);
       }
-  
+
       function easeInOutQuad(t) {
         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
       }
-  
+
       requestAnimationFrame(step);
     }
-  
-    // Clic en los nombres
+
     links.forEach(link => {
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-        if (targetSection) {
-          const targetY = targetSection.offsetTop - 20;
-          smoothScrollTo(targetY, 900);
-  
-          // Efecto glow temporal
-          links.forEach(l => l.classList.remove('clicked'));
-          this.classList.add('clicked');
-          setTimeout(() => this.classList.remove('clicked'), 1000);
+        const target = document.getElementById(this.getAttribute('href').substring(1));
+        if (target) {
+          smoothScrollTo(target.offsetTop - 20);
+        }
+      });
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        mobileLinks.forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+        const target = document.getElementById(this.getAttribute('href').substring(1));
+        if (target) {
+          smoothScrollTo(target.offsetTop - 20);
+          moveSelectorBar(this);
         }
       });
     });
   </script>
-  
 </body>
 </html>
