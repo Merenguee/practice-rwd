@@ -2,9 +2,10 @@
     box-sizing: border-box;
 }
 
-html{
-    font-size:16px;
+html {
+    font-size: 16px;
 }
+
 body {
     margin: 0;
     font-family: Arial;
@@ -15,15 +16,19 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    padding: 1.5rem;
+    background: #f1f1f1;
+    text-align: center;
 }
 
 .row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    padding: 0 4px;
 }
 
-/* Create four equal columns that sits next to each other */
+/* Creamos cuatro columnas iguales una al lado de la otra */
 .column {
     display: flex;
     flex-direction: column;
@@ -33,23 +38,35 @@ body {
 
 .column img {
     margin-top: 0.5rem;
+    width: 100%; /* Hace que las imágenes sean responsive */
+    vertical-align: middle;
+    transition: all 0.3s ease; /* Añadimos transición para suavizar el efecto */
+    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
 }
 
+/* Efecto de zoom al pasar el ratón por encima de una imagen */
+.column img:hover {
+    transform: scale(1.15); /* La imagen se agranda un 15% */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Añade una sombra para destacar */
+    z-index: 10; /* Asegura que la imagen ampliada quede por encima de las demás */
+}
+
+/* Efecto para hacer más pequeñas las demás imágenes cuando una tiene hover */
+.row:hover .column img:not(:hover) {
+    opacity: 0.7; /* Reduce la opacidad de las imágenes sin hover */
+    transform: scale(0.95); /* Reduce ligeramente el tamaño */
+}
+
+/* Media query para tablets: 2 columnas */
 @media screen and (max-width: 800px) {
+    .column {
+        width: 50%;
+    }
 }
 
-@media screen and (max-width: 600px) {
-
-}
-
-.column {
-    width: 50%;
-
-}
-
+/* Media query para móviles: 1 columna */
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
-      
     }
 }
