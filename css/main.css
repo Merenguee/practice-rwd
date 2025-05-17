@@ -1,101 +1,135 @@
+/* Reset básico */
 * {
     box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 html {
     font-size: 16px;
 }
 
-
-
 body {
-    background: radial-gradient(circle,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 22%, rgba(0, 0, 0, 1) 100%);
     margin: 0;
-    font-family: Arial;
-}
-
-.header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: #f1f1f1;
-    text-align: center;
-}
-
-.info {
-    opacity: 0;
-    transition: 0.3s;
-    position: absolute;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    color: white;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .imagen:hover .info {
-    opacity: 1;
-  }
-
-  .imagen {
+    font-family: 'Josefin Sans', sans-serif;
     position: relative;
-    width: 300px;
-    margin: 2rem auto;
+    z-index: 0;
+    color: white;
 }
 
-.imagen img {
-    width: 100%;
-    display: block;
+/* Animacion zoom suave para main-wrapper */
+#main-wrapper {
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    will-change: transform, opacity;
 }
 
+#main-wrapper.zoomed {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Video de fondo */
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%) scale(1.2);
+    filter: brightness(0.5);
+    object-fit: cover;
+}
+
+/* Capa de sombra arriba del video */
+.video-background .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+}
+
+/* Header */
+.header {
+    position: relative;
+    padding: 1.5rem;
+    background: transparent;
+    text-align: center;
+    z-index: 10;
+    transition: background 0.4s ease;
+}
+
+/* Header cuando hacés scroll */
+.header.scrolled {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+}
+
+/* Grid de imágenes */
 .row {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     padding: 0 4px;
+    margin-top: 1rem;
+    z-index: 10;
+    position: relative;
 }
 
-/* Creamos cuatro columnas iguales una al lado de la otra */
 .column {
-    display: flex;
-    flex-direction: column;
-    width: 25%;
+    flex: 25%;
+    max-width: 25%;
     padding: 0 0.25rem;
 }
 
 .column img {
     margin-top: 0.5rem;
-    width: 100%; /* Hace que las imágenes sean responsive */
+    width: 100%;
     vertical-align: middle;
-    transition: all 0.3s ease; /* Añadimos transición para suavizar el efecto */
-    cursor: pointer; /* Cambia el cursor a una mano al pasar por encima */
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
-/* Efecto de zoom al pasar el ratón por encima de una imagen */
 .column img:hover {
-    transform: scale(1.15); /* La imagen se agranda un 15% */
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Añade una sombra para destacar */
-    z-index: 10; /* Asegura que la imagen ampliada quede por encima de las demás */
+    transform: scale(1.15);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    z-index: 10;
 }
 
-/* Efecto para hacer más pequeñas las demás imágenes cuando una tiene hover */
 .row:hover .column img:not(:hover) {
-    opacity: 0.7; /* Reduce la opacidad de las imágenes sin hover */
-    transform: scale(0.95); /* Reduce ligeramente el tamaño */
+    opacity: 0.7;
+    transform: scale(0.95);
 }
 
-/* Media query para tablets: 2 columnas */
+/* Responsive */
 @media screen and (max-width: 800px) {
     .column {
-        width: 50%;
+        flex: 50%;
+        max-width: 50%;
     }
 }
 
-/* Media query para móviles: 1 columna */
 @media screen and (max-width: 600px) {
     .column {
-        width: 100%;
+        flex: 100%;
+        max-width: 100%;
     }
 }

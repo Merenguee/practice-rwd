@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
-  <link rel="stylesheet" href="css/main.css"> 
-  <title> Galerías de imágenes </title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Video Fondo con Zoom</title>
+  <link rel="stylesheet" href="css/main.css" />
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <h1>Responsive Image Grid</h1>
-    <p>Modificar el tamaño de la ventana para ver los cambios.</p>
+  <div class="video-background">
+    <video autoplay loop playsinline>
+      <source src="assets/Musica/damaris.mp4" type="video/mp4" />
+      Tu navegador no soporta la etiqueta video.
+    </video>
+    <div class="overlay"></div>
   </div>
 
-  <!-- Photo Grid -->
-  <div class="row">
-    <div class="column">
-      <img src="assets/images/wedding.jpg" alt="">
-      <img src="assets/images/rocks.jpg" alt="">
-      <img src="assets/images/falls2.jpg" alt="">
-      <img src="assets/images/paris.jpg" alt="">
-      <img src="assets/images/nature.jpg" alt="">
-      <img src="assets/images/mist.jpg" alt="">
-      <img src="assets/images/paris.jpg" alt="">
-    </div>
+  <!-- Contenedor principal para zoom -->
+  <div id="main-wrapper">
+    <header class="header">
+      <h1>Responsive Image Grid</h1>
+      <p>Modificar el tamaño de la ventana para ver los cambios.</p>
+    </header>
 
-    <div class="column">
-      <img src="assets/images/underwater.jpg" alt="">
-      <img src="assets/images/ocean.jpg" alt="">
-      <img src="assets/images/wedding.jpg" alt="">
-      <img src="assets/images/mountainskies.jpg" alt="">
-      <img src="assets/images/rocks.jpg" alt="">
-      <img src="assets/images/underwater.jpg" alt="">
-    </div>
-
-    <div class="column">
-      <img src="assets/images/wedding.jpg" alt="">
-      <img src="assets/images/rocks.jpg" alt="">
-      <img src="assets/images/falls2.jpg" alt="">
-      <img src="assets/images/paris.jpg" alt="">
-      <img src="assets/images/nature.jpg" alt="">
-      <img src="assets/images/mist.jpg" alt="">
-      <img src="assets/images/paris.jpg" alt="">
-    </div>
-
-    <div class="column">
-      <img src="assets/images/underwater.jpg" alt="">
-      <img src="assets/images/ocean.jpg" alt="">
-      <img src="assets/images/wedding.jpg" alt="">
-      <img src="assets/images/mountainskies.jpg" alt="">
-      <img src="assets/images/rocks.jpg" alt="">
-      <img src="assets/images/underwater.jpg" alt="">
+    <div class="row">
+      <div class="column">
+        <img src="assets/images/wedding.jpg" alt="" />
+        <img src="assets/images/rocks.jpg" alt="" />
+        <img src="assets/images/falls2.jpg" alt="" />
+        <img src="assets/images/paris.jpg" alt="" />
+        <img src="assets/images/nature.jpg" alt="" />
+        <img src="assets/images/mist.jpg" alt="" />
+        <img src="assets/images/paris.jpg" alt="" />
+      </div>
+      <div class="column">
+        <img src="assets/images/underwater.jpg" alt="" />
+        <img src="assets/images/ocean.jpg" alt="" />
+        <img src="assets/images/wedding.jpg" alt="" />
+        <img src="assets/images/mountainskies.jpg" alt="" />
+        <img src="assets/images/rocks.jpg" alt="" />
+        <img src="assets/images/underwater.jpg" alt="" />
+      </div>
+      <div class="column">
+        <img src="assets/images/wedding.jpg" alt="" />
+        <img src="assets/images/rocks.jpg" alt="" />
+        <img src="assets/images/falls2.jpg" alt="" />
+        <img src="assets/images/paris.jpg" alt="" />
+        <img src="assets/images/nature.jpg" alt="" />
+        <img src="assets/images/mist.jpg" alt="" />
+        <img src="assets/images/paris.jpg" alt="" />
+      </div>
+      <div class="column">
+        <img src="assets/images/underwater.jpg" alt="" />
+        <img src="assets/images/ocean.jpg" alt="" />
+        <img src="assets/images/wedding.jpg" alt="" />
+        <img src="assets/images/mountainskies.jpg" alt="" />
+        <img src="assets/images/rocks.jpg" alt="" />
+        <img src="assets/images/underwater.jpg" alt="" />
+      </div>
     </div>
   </div>
-  <div class="imagen">
-    <img src="assets/images/underwater.jpg" alt="">
-    <div class="info">Texto que aparece</div>
-  </div>
-  
+
+  <script src="js/main.js"></script>
 </body>
-
 </html>
-
